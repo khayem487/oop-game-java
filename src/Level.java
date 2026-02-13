@@ -95,6 +95,37 @@ public class Level {
         hasPlayer = true;
     }
 
-    public void movePlayer()
+    public void movePlayer(Direction dir) {
+        int cRow = 0, cCol = 0;
+        switch (dir) {
+            case UP:
+                cRow--;
+                break;
+            case DOWN:
+                cRow++;
+                break;
+            case LEFT:
+                cCol--;
+                break;
+            case RIGHT:
+                cCol++;
+                break;
+        }
+        try {
+            hasPlayer = false;
+            grid[playerRow][playerCol] = ' ';
+            placePlayer(playerRow + cRow, playerCol + cCol);
+        } catch (IllegalArgumentException e) {
+            hasPlayer = true;
+            grid[playerRow][playerCol] = '1';
+        }
+        this.printGrid();
+    }
 
+    public enum Direction {
+        UP,
+        LEFT,
+        DOWN,
+        RIGHT
+    }
 }
