@@ -1,8 +1,4 @@
-import java.util.List;
 import java.util.Random;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.io.IOException;
 public class Level {
     private char[][] grid;
     private int playerRow;
@@ -43,29 +39,6 @@ public class Level {
 
                 }
             }
-        }
-    }
-
-    public static Level loadFromFile(String path) {
-        try {
-            List<String> lines = Files.readAllLines(Path.of(path));
-            if (lines.isEmpty()) {
-                System.err.println("Empty level file: " + path);
-                return null;
-            }
-            int rows = lines.size();
-            int cols = lines.get(0).length();
-            char[][] grid = new char[rows][cols];
-            for (int i = 0; i < rows; i++) {
-                String line = lines.get(i);
-                for (int j = 0; j < cols; j++) {
-                    grid[i][j] = (j < line.length()) ? line.charAt(j) : ' ';
-                }
-            }
-            return new Level(grid);
-        } catch (IOException e) {
-            System.err.println("Cannot read level file: " + path);
-            return null;
         }
     }
 
@@ -122,39 +95,6 @@ public class Level {
         hasPlayer = true;
     }
 
-    public void movePlayer(Direction dir) {
-        int cRow=0, cCol=0;
-        switch (dir) {
-            case UP:
-                cRow--;
-                break;
-            case DOWN:
-                cRow++;
-                break;
-            case LEFT:
-                cCol--;
-                break;
-            case RIGHT:
-                cCol++;
-                break;
-        }
-        try {
-            hasPlayer = false;
-            grid[playerRow][playerCol] = ' ';
-            placePlayer(playerRow+cRow, playerCol+cCol);
-        }
-        catch (IllegalArgumentException e) {
-            hasPlayer = true;
-            grid[playerRow][playerCol] = '1';
-        }
-        this.printGrid();
-    }
-
-    public enum Direction {
-        UP,
-        LEFT,
-        DOWN,
-        RIGHT
-    }
+    public void movePlayer()
 
 }
