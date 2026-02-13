@@ -1,3 +1,7 @@
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
 import java.util.Random;
 public class Level {
     private char[][] grid;
@@ -42,6 +46,26 @@ public class Level {
         }
     }
 
+    public Level(String path){
+        this(readGridFromFile(path));
+    }
+
+    private static char[][] readGridFromFile(String path){
+        try{
+            List<String> lines = Files.readAllLines(Path.of(path));
+            char [][] tempGrid = new char [lines.size()][lines.get(0).length()];
+            for (int i = 0; i < tempGrid.length; i++) {
+                for (int j = 0; j < tempGrid[0].length; j++) {
+                    tempGrid[i][j]=lines.get(i).charAt(j);
+                }
+            }
+            return tempGrid;
+        } catch (IOException e) {
+            System.err.println("Cannot read level file: " + path);
+        }
+        return null;
+    }
+
     public void printGrid() {
         for (int i = 0; i < grid.length; i++) {
             StringBuilder line = new StringBuilder();
@@ -50,7 +74,7 @@ public class Level {
                 if (c == '#') {
                     line.append("⬛");
                 } else if (c == '1') {
-                    line.append("🧍");
+                    line.append("🧙‍♂️");
                 } else {
                     line.append("  ");
                 }
