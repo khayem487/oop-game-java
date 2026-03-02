@@ -14,7 +14,7 @@ class Main{
             System.out.println("Usage: java Main <level-file>");
             return;
         }
-        
+
         Level level1 = new Level(args[0]);
         level1.printGrid();
         Scanner input = new Scanner(System.in);
