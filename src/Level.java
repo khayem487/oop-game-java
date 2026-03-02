@@ -48,6 +48,20 @@ public class Level {
 
     public Level(String path){
         this(readGridFromFile(path));
+        int i =0;
+        int j = 0;
+        while(i<this.grid.length && !this.hasPlayer){
+            j=0;
+            while(j < this.grid[0].length && !this.hasPlayer) {
+                if (this.grid[i][j]=='1') {
+                    this.hasPlayer = true;
+                    this.playerRow=i;
+                    this.playerCol=j;
+                }
+                j++;
+            }
+            i++;
+        }
     }
 
     private static char[][] readGridFromFile(String path){
@@ -72,7 +86,7 @@ public class Level {
             for (int j = 0; j < grid[i].length; j++) {
                 char c = grid[i][j];
                 if (c == '#') {
-                    line.append("⬛");
+                    line.append("\uD83D\uDFEB");//⬛⬜◼️⏹️❎🟦🟪🟫🟩🟥
                 } else if (c == '1') {
                     line.append("🧙‍♂️");
                 } else {
