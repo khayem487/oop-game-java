@@ -10,7 +10,12 @@ class Main{
     public static void main(String[] args) {
         //TestWorld1.main();
         //TestWorld2.main();
-        Level level1 = new Level("C:\\Users\\khaye\\OneDrive\\Documents\\GL1\\java\\app\\src\\level1.txt");
+        if (args.length!=1) {
+            System.out.println("Usage: java Main <level-file>");
+            return;
+        }
+        
+        Level level1 = new Level(args[0]);
         level1.printGrid();
         Scanner input = new Scanner(System.in);
         while (true) {
@@ -22,11 +27,20 @@ class Main{
             if (c == 'x') break;
 
             switch (c) {
-                case 'z': level1.movePlayer(Level.Direction.UP); break;
-                case 'q': level1.movePlayer(Level.Direction.LEFT); break;
-                case 's': level1.movePlayer(Level.Direction.DOWN); break;
-                case 'd': level1.movePlayer(Level.Direction.RIGHT); break;
-                default:  break;
+                case 'z':
+                    level1.movePlayer(Level.Direction.UP);
+                    break;
+                case 'q':
+                    level1.movePlayer(Level.Direction.LEFT);
+                    break;
+                case 's':
+                    level1.movePlayer(Level.Direction.DOWN);
+                    break;
+                case 'd':
+                    level1.movePlayer(Level.Direction.RIGHT);
+                    break;
+                default:
+                    break;
             }
         }
 
