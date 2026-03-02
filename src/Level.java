@@ -3,12 +3,25 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Random;
+
+/**
+ * Models a game level as a character grid and player position state.
+ */
 public class Level {
+    /** Grid containing walls, empty cells, and the player marker. */
     private char[][] grid;
+    /** Current player row index. */
     private int playerRow;
+    /** Current player column index. */
     private int playerCol;
+    /** Indicates whether the player is currently placed in the grid. */
     private boolean hasPlayer;
 
+    /**
+     * Creates a level from an existing grid.
+     *
+     * @param grid source grid to copy
+     */
     public Level(char[][] grid) {
         if (grid == null || grid.length == 0 || grid[0].length == 0) {
             throw new IllegalArgumentException("Grid must not be empty");
@@ -21,6 +34,9 @@ public class Level {
         }
     }
 
+    /**
+     * Creates a random level with walls on borders and random internal walls.
+     */
     public Level() {
         Random rand = new Random();
         int minSize = 5;
@@ -46,6 +62,11 @@ public class Level {
         }
     }
 
+    /**
+     * Creates a level from a text file and initializes player state from marker '1'.
+     *
+     * @param path path to the level text file
+     */
     public Level(String path){
         this(readGridFromFile(path));
         int i =0;
@@ -64,6 +85,12 @@ public class Level {
         }
     }
 
+    /**
+     * Reads a grid from a text file.
+     *
+     * @param path path to the level text file
+     * @return loaded grid, or {@code null} when file cannot be read
+     */
     private static char[][] readGridFromFile(String path){
         try{
             List<String> lines = Files.readAllLines(Path.of(path));
@@ -80,6 +107,9 @@ public class Level {
         return null;
     }
 
+    /**
+     * Prints the current level state in the console.
+     */
     public void printGrid() {
         for (int i = 0; i < grid.length; i++) {
             StringBuilder line = new StringBuilder();
@@ -101,7 +131,12 @@ public class Level {
     }
 
 
-    // wall: #, player: 1, empty: space
+    /**
+     * Places the player on a valid empty cell.
+     *
+     * @param row target row
+     * @param col target column
+     */
     public void placePlayer(int row, int col) {
         if (row < 0 || col < 0 || row >= grid.length || col >= grid[0].length) {
             throw new IllegalArgumentException("Player position out of bounds");
@@ -117,6 +152,9 @@ public class Level {
         hasPlayer = true;
     }
 
+    /**
+     * Places the player randomly on an empty cell.
+     */
     public void randomPlacePlayer(){
         if (hasPlayer)
             return;
@@ -133,6 +171,11 @@ public class Level {
         hasPlayer = true;
     }
 
+    /**
+     * Moves the player one cell in the given direction.
+     *
+     * @param dir move direction
+     */
     public void movePlayer(Direction dir) {
         int cRow = 0, cCol = 0;
         switch (dir) {
@@ -160,6 +203,9 @@ public class Level {
         this.printGrid();
     }
 
+    /**
+     * Allowed movement directions.
+     */
     public enum Direction {
         UP,
         LEFT,

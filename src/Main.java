@@ -1,11 +1,13 @@
 import java.util.Scanner;
 
 /**
- * Simple test class for Player.
+ * Entry point for running a level loaded from a text file.
  */
 class Main{
     /**
-     * main of the projects
+     * Starts the game loop using a level file passed as argument.
+     *
+     * @param args command-line arguments, expected: <level-file>
      */
     public static void main(String[] args) {
         //TestWorld1.main();
