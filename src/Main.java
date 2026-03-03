@@ -7,7 +7,7 @@ class Main{
     /**
      * Starts the game loop using a level file passed as argument.
      *
-     * @param args command-line arguments, expected: <level-file>
+     * @param args command-line arguments, expected: &lt;level-file&gt;
      */
     public static void main(String[] args) {
         //TestWorld1.main();
@@ -16,11 +16,15 @@ class Main{
             System.out.println("Usage: java Main <level-file>");
             return;
         }
+        Player player =new Player();
 
-        Level level1 = new Level(args[0]);
+        Level level1 = new Level();
+        level1.randomPlacePlayer();
         level1.printGrid();
         Scanner input = new Scanner(System.in);
-        while (true) {
+        while (true && level1.getCoinCounter()>0) {
+            System.out.println("current score : " +player.getScore());
+            System.out.println("coins remaining " +level1.getCoinCounter());
             System.out.print("Enter Your Choice: ");
             String choice = input.nextLine();
             if (choice.equals(""))

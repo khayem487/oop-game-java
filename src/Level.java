@@ -16,6 +16,8 @@ public class Level {
     private int playerCol;
     /** Indicates whether the player is currently placed in the grid. */
     private boolean hasPlayer;
+    /** Indicates how many coins are remaining to collect */
+    private int coinCounter=0;
 
     /**
      * Creates a level from an existing grid.
@@ -30,8 +32,16 @@ public class Level {
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[0].length; j++) {
                 this.grid[i][j] = grid[i][j];
+                if (this.grid[i][j] == '.') {
+                    coinCounter++;
+                }
             }
         }
+    }
+
+
+    public int getCoinCounter() {
+        return coinCounter;
     }
 
     /**
@@ -47,6 +57,7 @@ public class Level {
         this.grid = new char[rows][cols];
 
         double wallChance = 0.2; // 20% walls inside the borders
+        double coinChance = 0.1; // 10% coins inside the borders
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 if (i == 0 || j == 0 || i == rows - 1 || j == cols - 1) {
@@ -54,7 +65,10 @@ public class Level {
                 } else {
                     if (rand.nextDouble() < wallChance)
                         this.grid[i][j] = '#';
-                    else
+                    else if (rand.nextDouble()<coinChance) {
+                        this.grid[i][j] = '.';
+                        coinCounter++;
+                    } else
                         this.grid[i][j] = ' ';
 
                 }
@@ -119,6 +133,8 @@ public class Level {
                     line.append("\uD83D\uDFEB");//⬛⬜◼️⏹️❎🟦🟪🟫🟩🟥
                 } else if (c == '1') {
                     line.append("🧙‍♂️");
+                } else if (c == '.') {
+                    line.append("🪙");
                 } else {
                     line.append("  ");
                 }
@@ -141,7 +157,7 @@ public class Level {
         if (row < 0 || col < 0 || row >= grid.length || col >= grid[0].length) {
             throw new IllegalArgumentException("Player position out of bounds");
         }
-        if (this.grid[row][col] != ' ') {
+        if (this.grid[row][col] == '#') {
             throw new IllegalArgumentException("Player must be placed on empty space");
         }
         if (hasPlayer)
@@ -195,6 +211,8 @@ public class Level {
         try {
             hasPlayer = false;
             grid[playerRow][playerCol] = ' ';
+            if (grid[playerRow + cRow][playerCol + cCol] == '.')
+                this.coinCounter--;
             placePlayer(playerRow + cRow, playerCol + cCol);
         } catch (IllegalArgumentException e) {
             hasPlayer = true;
@@ -212,4 +230,5 @@ public class Level {
         DOWN,
         RIGHT
     }
+
 }
