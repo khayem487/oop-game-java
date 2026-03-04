@@ -57,6 +57,9 @@ class Main{
                     break;
             }
         }
-
+        if (level1.getCoinCounter()>0)
+            System.out.println("Game Over");
+        else
+            System.out.println("LEVEL COMPLETED");
     }
 }
