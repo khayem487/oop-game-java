@@ -192,7 +192,7 @@ public class Level {
      *
      * @param dir move direction
      */
-    public void movePlayer(Direction dir) {
+    public MoveResult movePlayer(Direction dir) {
         int cRow = 0, cCol = 0;
         switch (dir) {
             case UP:
@@ -208,17 +208,22 @@ public class Level {
                 cCol++;
                 break;
         }
+        MoveResult result = new MoveResult(0);
         try {
             hasPlayer = false;
             grid[playerRow][playerCol] = ' ';
-            if (grid[playerRow + cRow][playerCol + cCol] == '.')
+            if (grid[playerRow + cRow][playerCol + cCol] == '.') {
                 this.coinCounter--;
+                result = new MoveResult(1);
+            }
             placePlayer(playerRow + cRow, playerCol + cCol);
         } catch (IllegalArgumentException e) {
             hasPlayer = true;
             grid[playerRow][playerCol] = '1';
+
         }
         this.printGrid();
+        return result;
     }
 
     /**
@@ -231,4 +236,16 @@ public class Level {
         RIGHT
     }
 
+    public static final class MoveResult {
+        private final int coinsCollected;
+
+        public MoveResult(int coinsCollected) {
+            this.coinsCollected=Math.max(0,coinsCollected);
+        }
+
+        public int getCoinsCollected() {
+            return coinsCollected;
+        }
+
+    }
 }

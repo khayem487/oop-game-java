@@ -31,19 +31,27 @@ class Main{
                 continue;
             char c = Character.toLowerCase(choice.charAt(0));
             if (c == 'x') break;
-
+            Level.MoveResult result;
             switch (c) {
                 case 'z':
-                    level1.movePlayer(Level.Direction.UP);
+                    result=level1.movePlayer(Level.Direction.UP);
+                    if (result.getCoinsCollected()==1)
+                        player.addPoints(10);
                     break;
                 case 'q':
-                    level1.movePlayer(Level.Direction.LEFT);
+                    result=level1.movePlayer(Level.Direction.LEFT);
+                    if (result.getCoinsCollected()==1)
+                        player.addPoints(10);
                     break;
                 case 's':
-                    level1.movePlayer(Level.Direction.DOWN);
+                    result=level1.movePlayer(Level.Direction.DOWN);
+                    if (result.getCoinsCollected()==1)
+                        player.addPoints(10);
                     break;
                 case 'd':
-                    level1.movePlayer(Level.Direction.RIGHT);
+                    result=level1.movePlayer(Level.Direction.RIGHT);
+                    if (result.getCoinsCollected()==1)
+                        player.addPoints(10);
                     break;
                 default:
                     break;
