@@ -16,50 +16,75 @@ class Main{
             System.out.println("Usage: java Main <level-file>");
             return;
         }
-        Player player =new Player();
+        boolean replay = true;
+        while(replay) {
+            replay = false;
+            Player player = new Player();
 
-        Level level1 = new Level();
-        level1.randomPlacePlayer();
-        level1.printGrid();
-        Scanner input = new Scanner(System.in);
-        while (true && level1.getCoinCounter()>0) {
-            System.out.println("current score : " +player.getScore());
-            System.out.println("coins remaining " +level1.getCoinCounter());
-            System.out.print("Enter Your Choice: ");
-            String choice = input.nextLine();
-            if (choice.equals(""))
-                continue;
-            char c = Character.toLowerCase(choice.charAt(0));
-            if (c == 'x') break;
-            Level.MoveResult result;
-            switch (c) {
-                case 'z':
-                    result=level1.movePlayer(Level.Direction.UP);
-                    if (result.getCoinsCollected()==1)
-                        player.addPoints(10);
-                    break;
-                case 'q':
-                    result=level1.movePlayer(Level.Direction.LEFT);
-                    if (result.getCoinsCollected()==1)
-                        player.addPoints(10);
-                    break;
-                case 's':
-                    result=level1.movePlayer(Level.Direction.DOWN);
-                    if (result.getCoinsCollected()==1)
-                        player.addPoints(10);
-                    break;
-                case 'd':
-                    result=level1.movePlayer(Level.Direction.RIGHT);
-                    if (result.getCoinsCollected()==1)
-                        player.addPoints(10);
-                    break;
-                default:
-                    break;
+            Level level1 = new Level();
+            level1.randomPlacePlayer();
+
+            level1.printGrid();
+            Scanner input = new Scanner(System.in);
+            while (true && level1.getCoinCounter() > 0 && player.getLives()>0) {
+                System.out.println("current score : " + player.getScore());
+                System.out.println("current Lives"+player.getLives());
+                System.out.println("coins remaining " + level1.getCoinCounter());
+                System.out.print("Enter Your Choice: ");
+                String choice = input.nextLine();
+                if (choice.equals(""))
+                    continue;
+                char c = Character.toLowerCase(choice.charAt(0));
+                if (c == 'x') break;
+                Level.MoveResult result;
+                switch (c) {
+                    case 'z':
+                        result = level1.movePlayer(Level.Direction.UP);
+                        if (result.getCoinsCollected() == 1)
+                            player.addPoints(10);
+                        else if (result.getDammageDone() != 0) {
+                            player.reduceLives(result.getDammageDone());
+                        }
+                        break;
+                    case 'q':
+                        result = level1.movePlayer(Level.Direction.LEFT);
+                        if (result.getCoinsCollected() == 1)
+                            player.addPoints(10);
+                        else if (result.getDammageDone() != 0) {
+                            player.reduceLives(result.getDammageDone());
+                        }
+                        break;
+                    case 's':
+                        result = level1.movePlayer(Level.Direction.DOWN);
+                        if (result.getCoinsCollected() == 1)
+                            player.addPoints(10);
+                        else if (result.getDammageDone() != 0) {
+                            player.reduceLives(result.getDammageDone());
+                        }
+                        break;
+                    case 'd':
+                        result = level1.movePlayer(Level.Direction.RIGHT);
+                        if (result.getCoinsCollected() == 1)
+                            player.addPoints(10);
+                        else if (result.getDammageDone() != 0) {
+                            player.reduceLives(result.getDammageDone());
+                        }
+                        break;
+                    default:
+                        break;
+                }
             }
+            if (level1.getCoinCounter() > 0 || player.getLives() <= 0) {
+                System.out.println("Game Over");
+                System.out.print("do u want to play again [y/n] : ");
+                String reply = input.nextLine();
+                while (Character.toLowerCase(reply.charAt(0)) != 'y' && Character.toLowerCase(reply.charAt(0)) != 'n') {
+                    System.out.print("do u want to play again [y/n] : ");
+                    reply = input.nextLine();
+                }
+                replay = Character.toLowerCase(reply.charAt(0)) == 'y';
+            } else
+                System.out.println("LEVEL COMPLETED");
         }
-        if (level1.getCoinCounter()>0)
-            System.out.println("Game Over");
-        else
-            System.out.println("LEVEL COMPLETED");
     }
 }

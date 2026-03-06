@@ -9,6 +9,22 @@ public class Player {
     /** Counts how many Player instances were created. */
     static private int totalPlayers = 0;
 
+    private int lives = 5;
+
+    public int getLives() {
+        return lives;
+    }
+
+    public void setLives(int lives) {
+        this.lives = lives;
+    }
+
+    public void reduceLives(int lives) {
+        this.lives -= lives;
+    }
+
+
+
     /**
      * Creates a player with a given name and an initial score of 0.
      *

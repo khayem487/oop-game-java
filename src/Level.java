@@ -58,6 +58,7 @@ public class Level {
 
         double wallChance = 0.2; // 20% walls inside the borders
         double coinChance = 0.1; // 10% coins inside the borders
+        double trapChance = 0.025; // 2.5% traps inside the borders
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 if (i == 0 || j == 0 || i == rows - 1 || j == cols - 1) {
@@ -68,6 +69,8 @@ public class Level {
                     else if (rand.nextDouble()<coinChance) {
                         this.grid[i][j] = '.';
                         coinCounter++;
+                    } else if (rand.nextDouble()<trapChance) {
+                        this.grid[i][j] = '*';
                     } else
                         this.grid[i][j] = ' ';
 
@@ -135,6 +138,8 @@ public class Level {
                     line.append("🧙‍♂️");
                 } else if (c == '.') {
                     line.append("🪙");
+                } else if (c == '*') {
+                    line.append("💣");
                 } else {
                     line.append("  ");
                 }
@@ -208,13 +213,16 @@ public class Level {
                 cCol++;
                 break;
         }
-        MoveResult result = new MoveResult(0);
+        MoveResult result = new MoveResult(0,0 );
         try {
             hasPlayer = false;
             grid[playerRow][playerCol] = ' ';
             if (grid[playerRow + cRow][playerCol + cCol] == '.') {
                 this.coinCounter--;
-                result = new MoveResult(1);
+                result = new MoveResult(1,0 );
+            }
+            if (grid[playerRow + cRow][playerCol + cCol] == '*') {
+                result = new MoveResult(0,2 );
             }
             placePlayer(playerRow + cRow, playerCol + cCol);
         } catch (IllegalArgumentException e) {
@@ -238,14 +246,19 @@ public class Level {
 
     public static final class MoveResult {
         private final int coinsCollected;
+        private final int dammageDone;
 
-        public MoveResult(int coinsCollected) {
+        public MoveResult(int coinsCollected, int dammageDone) {
             this.coinsCollected=Math.max(0,coinsCollected);
+            this.dammageDone =Math.max(0,dammageDone) ;
         }
 
         public int getCoinsCollected() {
             return coinsCollected;
         }
 
+        public int getDammageDone() {
+            return dammageDone;
+        }
     }
 }
