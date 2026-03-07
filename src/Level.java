@@ -18,6 +18,8 @@ public class Level {
     private boolean hasPlayer;
     /** Indicates how many coins are remaining to collect */
     private int coinCounter=0;
+    private int playerStartRow;
+    private int playerStartCol;
 
     /**
      * Creates a level from an existing grid.
@@ -38,7 +40,6 @@ public class Level {
             }
         }
     }
-
 
     public int getCoinCounter() {
         return coinCounter;
@@ -232,6 +233,18 @@ public class Level {
         }
         this.printGrid();
         return result;
+    }
+
+    public void saveStartPosition() {
+        this.playerStartRow = this.playerRow;
+        this.playerStartCol = this.playerCol;
+    }
+
+    public void resetPlayerPosition() {
+        this.grid[playerRow][playerCol] = ' ';
+        this.playerRow = this.playerStartRow;
+        this.playerCol = this.playerStartCol;
+        this.grid[playerRow][playerCol] = '1';
     }
 
     /**
