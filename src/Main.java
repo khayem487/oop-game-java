@@ -27,9 +27,8 @@ class Main{
             while (replay) {
                 replay = false;
                 player = new Player(name);
-                int i=-1;
+                int i=0;
                 do {
-                    i++;
                     level1 = new Level(args[i]);
                     level1.saveStartPosition();
                     level1.printGrid();
@@ -101,7 +100,7 @@ class Main{
                         replay = Character.toLowerCase(reply.charAt(0)) == 'y';
                     } else
                         System.out.println("LEVEL COMPLETED");
-
+                    i++;
                 }while(i<args.length && player.getLives()>0);
             }
         System.out.println("thanks for playing");
