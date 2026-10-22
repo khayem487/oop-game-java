@@ -1,4 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "regions": ["cdg1"]
+  "regions": ["cdg1"],
+  "services": {
+    "oop-game-java": { "root": ".", "entrypoint": "Dockerfile.vercel" }
+  },
+  "rewrites": [
+    { "source": "/(.*)", "destination": { "type": "service", "service": "oop-game-java" } }
+  ]
 }
