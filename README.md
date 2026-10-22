@@ -11,6 +11,10 @@ Three playable maps contain 15 coins. Collecting a coin gives 10 points; a trap 
 
 ### Run locally
 
+**Play the real Java browser edition: https://khayem-oop-game.vercel.app/**
+Published and checked on 22 October 2026: all three worlds, 150-point victory,
+defeat/restart, independent visitors, keyboard controls and browser-save resume.
+
 Requires **JDK 21+** and Python 3 for the portable build/test helpers. No Maven, Node packages or downloaded Java dependencies are needed.
 
 ```text
@@ -51,7 +55,10 @@ Vercel container instances may stop when idle. Since every request reconstructs 
 - Server response: canonical history, grid, world, status, score, lives, remaining coins, move count and last event.
 - `history` uses `U/L/D/R/N`; malformed or impossible histories and early level transitions return 400. Wrong methods return 405, unsupported media types 415 and oversized bodies 413.
 
-Only the production alias should be public; deployment previews can stay protected. The browser edition is prepared on a review branch before publication.
+The production alias is public and deployment previews remain protected.
+The source is published in this repository. Publication currently uses the
+authenticated Vercel CLI; automatic Git deployment has not been enabled for
+this repository because the GitHub App grant covers five other named repositories.
 
 ## How to run (World 1)
 From `src`:
