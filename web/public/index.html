@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#101c19" />
+    <meta
+      name="description"
+      content="Trois labyrinthes, des pièces et cinq vies. Jouez au projet OOP Game avec son moteur Java original."
+    />
+    <title>OOP Game · Les jardins oubliés</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/game.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="OOP Game, accueil"
+        ><span class="brand-mark" aria-hidden="true">✣</span> OOP<span
+          class="brand-light"
+          >GAME</span
+        ></a
+      >
+      <a
+        class="source-link"
+        href="https://github.com/khayem487/oop-game-java"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Voir le projet <span aria-hidden="true">↗</span></a
+      >
+    </header>
+    <main>
+      <section class="intro">
+        <p class="eyebrow">
+          <span class="live-dot" aria-hidden="true"></span> UNE PETITE AVENTURE,
+          TROIS MONDES
+        </p>
+        <h1>Les jardins<br /><em>oubliés.</em></h1>
+        <p class="intro-copy">
+          Trouvez chaque pièce. Évitez les pièges.<br />Gardez assez de vies
+          pour atteindre le sanctuaire.
+        </p>
+      </section>
+      <div class="play-layout">
+        <section class="game-panel" aria-labelledby="world-name">
+          <div class="world-heading">
+            <div>
+              <p class="eyebrow" id="world-number">MONDE 01 / 03</p>
+              <h2 id="world-name">Le jardin oublié</h2>
+              <p class="world-subtitle" id="world-subtitle">
+                Prendre ses repères
+              </p>
+            </div>
+            <span class="world-stamp" aria-hidden="true">✧</span>
+          </div>
+          <div class="stats" aria-label="Votre partie">
+            <div>
+              <span class="stat-label">SCORE</span><strong id="score">—</strong
+              ><span class="stat-suffix">points</span>
+            </div>
+            <div>
+              <span class="stat-label">VIES</span><strong id="lives">—</strong
+              ><span class="stat-suffix">sur 5</span>
+            </div>
+            <div>
+              <span class="stat-label">PIÈCES</span><strong id="coins">—</strong
+              ><span class="stat-suffix">restantes</span>
+            </div>
+          </div>
+          <div class="board-frame">
+            <div
+              id="board"
+              class="board cols-11"
+              role="img"
+              aria-label="Chargement du labyrinthe"
+              tabindex="0"
+            ></div>
+            <div class="board-loading" id="loading">Ouverture du jardin…</div>
+          </div>
+          <div class="game-feedback">
+            <p id="message" role="status" aria-live="polite">
+              Votre aventure se prépare.
+            </p>
+            <button id="next" class="button primary" hidden>
+              Niveau suivant <span aria-hidden="true">→</span></button
+            ><button id="retry" class="button secondary" hidden>
+              Réessayer la connexion
+            </button>
+          </div>
+          <div class="board-footer">
+            <span
+              ><span
+                class="legend-token player-token"
+                aria-hidden="true"
+              ></span>
+              Vous</span
+            ><span
+              ><span class="legend-token coin-token" aria-hidden="true"></span>
+              +10 points</span
+            ><span
+              ><span class="legend-token trap-token" aria-hidden="true"></span>
+              −2 vies</span
+            ><span class="step-counter" id="steps">0 déplacement</span>
+          </div>
+        </section>
+        <aside class="side-panel">
+          <section class="control-card" aria-labelledby="controls-title">
+            <p class="eyebrow">À VOUS DE JOUER</p>
+            <h2 id="controls-title">Un pas à la fois.</h2>
+            <p>Déplacez-vous avec les flèches du clavier, ZQSD ou WASD.</p>
+            <div class="dpad" aria-label="Commandes tactiles">
+              <button class="up" data-move="UP" aria-label="Monter">↑</button
+              ><button
+                class="left"
+                data-move="LEFT"
+                aria-label="Aller à gauche"
+              >
+                ←</button
+              ><span class="dpad-center" aria-hidden="true">✣</span
+              ><button
+                class="right"
+                data-move="RIGHT"
+                aria-label="Aller à droite"
+              >
+                →</button
+              ><button class="down" data-move="DOWN" aria-label="Descendre">
+                ↓
+              </button>
+            </div>
+            <button id="restart" class="restart-button">
+              <span aria-hidden="true">↻</span> Recommencer l’aventure
+            </button>
+            <p class="save-note">
+              Votre partie est mémorisée dans ce navigateur.
+            </p>
+          </section>
+          <section class="journey-card" aria-labelledby="journey-title">
+            <p class="eyebrow">VOTRE PARCOURS</p>
+            <h2 id="journey-title">Trois lieux à explorer.</h2>
+            <ol class="world-list">
+              <li data-world="1" class="current">
+                <span>01</span>
+                <div>
+                  <strong>Le jardin oublié</strong
+                  ><small>Les premiers détours</small>
+                </div>
+                <i aria-hidden="true">●</i>
+              </li>
+              <li data-world="2">
+                <span>02</span>
+                <div>
+                  <strong>Les galeries</strong
+                  ><small>Le chemin se resserre</small>
+                </div>
+                <i aria-hidden="true">○</i>
+              </li>
+              <li data-world="3">
+                <span>03</span>
+                <div>
+                  <strong>Le dernier sanctuaire</strong
+                  ><small>La dernière ligne droite</small>
+                </div>
+                <i aria-hidden="true">○</i>
+              </li>
+            </ol>
+          </section>
+          <p class="rules-note">
+            <strong>Le piège a un prix.</strong> Vous perdez deux vies et
+            revenez au départ du niveau. Les pièces déjà ramassées restent
+            acquises. Récupérez-les toutes pour poursuivre.
+          </p>
+        </aside>
+      </div>
+    </main>
+    <footer class="site-footer">
+      <span>Un jeu de Khayem Ben Ghorbel</span
+      ><span>Interface web · moteur Java original</span
+      ><a href="https://khayem-ben-ghorbel.vercel.app/#projects"
+        >Retour au portfolio ↗</a
+      >
+    </footer>
+    <noscript
+      ><p class="noscript">
+        Activez JavaScript pour afficher le jeu et envoyer vos déplacements au
+        moteur Java.
+      </p></noscript
+    >
+  </body>
+</html>

@@ -1,0 +1,15 @@
+FROM eclipse-temurin:21-jdk-alpine AS build
+WORKDIR /build
+COPY src/Player.java src/Level.java ./core/
+COPY web/src ./web/
+RUN mkdir -p classes && javac --release 21 --add-modules jdk.httpserver -encoding UTF-8 -d classes core/*.java web/*.java
+COPY web/public ./classes/public
+RUN jar --create --file game.jar --main-class GameServer -C classes .
+
+FROM eclipse-temurin:21-jre-alpine
+WORKDIR /app
+COPY --from=build /build/game.jar ./game.jar
+ENV PORT=3000
+EXPOSE 3000
+USER 10001
+CMD ["java", "--add-modules", "jdk.httpserver", "-XX:MaxRAMPercentage=70", "-jar", "game.jar"]

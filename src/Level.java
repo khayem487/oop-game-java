@@ -20,6 +20,19 @@ public class Level {
     private int coinCounter=0;
     private int playerStartRow;
     private int playerStartCol;
+    private boolean consoleOutput = true;
+
+    /** A defensive view for alternate interfaces; callers cannot edit the level. */
+    public String[] snapshot() {
+        String[] rows = new String[grid.length];
+        for (int i = 0; i < grid.length; i++) rows[i] = new String(grid[i]);
+        return rows;
+    }
+
+    /** Keep console rendering for the original CLI, silence it in the web adapter. */
+    public void setConsoleOutput(boolean enabled) {
+        consoleOutput = enabled;
+    }
 
     /**
      * Creates a level from an existing grid.
@@ -231,7 +244,7 @@ public class Level {
             grid[playerRow][playerCol] = '1';
 
         }
-        this.printGrid();
+        if (consoleOutput) this.printGrid();
         return result;
     }
 

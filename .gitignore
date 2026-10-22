@@ -38,3 +38,7 @@ bin/
 src/docs/
 src/app.txt
 src/app.pdf
+.build/
+.vercel/
+.env
+.env.*

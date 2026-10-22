@@ -1,0 +1,7 @@
+.git
+.build
+web/tests
+tests
+outputs
+.env
+.env.*
