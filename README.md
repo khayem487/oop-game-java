@@ -10,7 +10,7 @@ Un jeu de labyrinthe issu d’un projet de programmation orientée objet : ramas
 ![JavaFX 21](https://img.shields.io/badge/JavaFX-21-2563EB?style=for-the-badge)
 ![JUnit 5](https://img.shields.io/badge/Tests-JUnit_5-25A162?style=for-the-badge)
 
-[**▶ Jouer dans le navigateur**](https://khayem-oop-game.vercel.app/) · [**Code source**](https://github.com/khayem487/oop-game-java) · [**Couverture du sujet**](docs/ASSIGNMENT-COVERAGE.md)
+[**▶ Jouer dans le navigateur**](https://khayem-oop-game.vercel.app/) · [**↓ Télécharger pour Windows**](https://github.com/khayem487/oop-game-java/releases/latest/download/OOP-Game-Windows.zip) · [**Code source**](https://github.com/khayem487/oop-game-java) · [**Couverture du sujet**](docs/ASSIGNMENT-COVERAGE.md)
 
 </div>
 
@@ -53,7 +53,7 @@ La campagne contient **six cartes jouables**. Les **six mondes du cours** sont l
 
 ## Jouer sur Windows
 
-L’archive **`OOP-Game-Windows.zip`** contient Java et JavaFX dans son propre dossier ; aucune installation système n’est nécessaire.
+L’archive [**OOP-Game-Windows.zip**](https://github.com/khayem487/oop-game-java/releases/latest/download/OOP-Game-Windows.zip) contient Java et JavaFX dans son propre dossier ; aucune installation système n’est nécessaire. Les sources de la version publiée sont également disponibles dans les [téléchargements GitHub](https://github.com/khayem487/oop-game-java/releases/tag/v2.0.0).
 
 1. Extraire **tout** le dossier `OOP-Game` de l’archive.
 2. Double-cliquer sur **`Jouer.cmd`**.
