@@ -1,188 +1,69 @@
 <!doctype html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="theme-color" content="#101c19" />
-    <meta
-      name="description"
-      content="Trois labyrinthes, des pièces et cinq vies. Jouez au projet OOP Game avec son moteur Java original."
-    />
-    <title>OOP Game · Les jardins oubliés</title>
-    <link rel="stylesheet" href="/style.css" />
-    <script src="/game.js" defer></script>
-  </head>
-  <body>
-    <header class="site-header">
-      <a class="brand" href="/" aria-label="OOP Game, accueil"
-        ><span class="brand-mark" aria-hidden="true">✣</span> OOP<span
-          class="brand-light"
-          >GAME</span
-        ></a
-      >
-      <a
-        class="source-link"
-        href="https://github.com/khayem487/oop-game-java"
-        target="_blank"
-        rel="noopener noreferrer"
-        >Voir le projet <span aria-hidden="true">↗</span></a
-      >
-    </header>
-    <main>
-      <section class="intro">
-        <p class="eyebrow">
-          <span class="live-dot" aria-hidden="true"></span> UNE PETITE AVENTURE,
-          TROIS MONDES
-        </p>
-        <h1>Les jardins<br /><em>oubliés.</em></h1>
-        <p class="intro-copy">
-          Trouvez chaque pièce. Évitez les pièges.<br />Gardez assez de vies
-          pour atteindre le sanctuaire.
-        </p>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#101c19" />
+  <meta name="description" content="Six cartes, des sentinelles et cinq vies. Une aventure jouable dans le navigateur avec le même moteur Java que le jeu de bureau." />
+  <title>OOP Game · Les jardins oubliés</title>
+  <link rel="stylesheet" href="/style.css" />
+  <script src="/game.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="OOP Game, accueil"><span class="brand-mark" aria-hidden="true">✣</span> OOP<span class="brand-light">GAME</span></a>
+    <nav aria-label="Navigation"><button id="credits" class="text-button">Crédits</button><a class="source-link" href="https://github.com/khayem487/oop-game-java" target="_blank" rel="noopener noreferrer">Le projet <span aria-hidden="true">↗</span></a></nav>
+  </header>
+  <main>
+    <section class="intro">
+      <p class="eyebrow"><span class="live-dot" aria-hidden="true"></span> SIX CARTES · UNE MÊME AVENTURE</p>
+      <h1>Les jardins<br /><em>oubliés.</em></h1>
+      <p class="intro-copy">Un trésor se cache derrière les haies.<br />Récoltez, équipez-vous, déjouez les sentinelles.<br /><span>Chaque pas fait aussi avancer vos ennemis.</span></p>
+    </section>
+    <div class="play-layout">
+      <section class="game-panel" aria-labelledby="level-name">
+        <div class="world-heading">
+          <div><p class="eyebrow" id="level-number">CARTE 01 / 06</p><h2 id="level-name">Votre jardin vous attend</h2><p class="world-subtitle" id="player-name">Explorateur</p></div>
+          <div class="panel-actions"><button id="pause" class="icon-button" aria-label="Mettre le jeu en pause" title="Pause · Échap">Ⅱ</button><button id="menu" class="icon-button" aria-label="Ouvrir le menu" title="Menu">☰</button></div>
+        </div>
+        <div class="stats" aria-label="Votre partie">
+          <div><span class="stat-label">SCORE</span><strong id="score">—</strong><span class="stat-suffix">points</span></div>
+          <div><span class="stat-label">VIES</span><strong id="lives">—</strong><span class="stat-suffix">sur 5</span></div>
+          <div><span class="stat-label">PIÈCES</span><strong id="coins">—</strong><span class="stat-suffix">restantes</span></div>
+          <div><span class="stat-label">ENNEMIS</span><strong id="enemies">—</strong><span class="stat-suffix">restants</span></div>
+        </div>
+        <div class="objective"><span aria-hidden="true">◇</span><p id="objective">Chargement de l’objectif…</p><span id="freeze" class="freeze-badge" hidden></span></div>
+        <div class="board-frame">
+          <div id="board" class="board" role="img" aria-label="Chargement du labyrinthe" tabindex="0"></div>
+          <div class="board-loading" id="loading">Ouverture du jardin…</div>
+          <div class="pause-overlay" id="pause-overlay" hidden><span class="eyebrow">PRENEZ VOTRE TEMPS</span><h3>Le jardin attendra.</h3><p>Aucun tour ne passe sans votre déplacement.</p><button id="resume" class="button primary">Reprendre l’aventure →</button></div>
+        </div>
+        <div class="game-feedback" id="feedback"><p id="message" role="status" aria-live="polite">Votre aventure se prépare.</p><button id="next" class="button primary" hidden>Carte suivante →</button><button id="retry" class="button secondary" hidden>Réessayer la connexion</button><button id="replay" class="button primary" hidden>Rejouer →</button></div>
+        <div class="inventory-heading"><div><span class="eyebrow">DANS VOTRE SAC</span><span id="inventory-count">0 / 5 emplacements</span></div><button id="sort" class="text-button" title="Objets puis compétences, par nom">Trier ↕</button></div>
+        <div id="inventory" class="inventory" aria-label="Inventaire, cinq emplacements"></div>
+        <p class="inventory-tip">Cliquez sur un emplacement ou appuyez sur 1–5. Les compétences sont réutilisables ; les armes protègent automatiquement.</p>
+        <div class="board-footer"><span><i class="legend-player" aria-hidden="true">●</i> Vous</span><span><i class="legend-coin" aria-hidden="true">●</i> Pièce +10</span><span><i class="legend-trap" aria-hidden="true">▲</i> Piège −2</span><span id="topology">Bords fermés</span><span class="step-counter" id="steps">0 tour</span></div>
       </section>
-      <div class="play-layout">
-        <section class="game-panel" aria-labelledby="world-name">
-          <div class="world-heading">
-            <div>
-              <p class="eyebrow" id="world-number">MONDE 01 / 03</p>
-              <h2 id="world-name">Le jardin oublié</h2>
-              <p class="world-subtitle" id="world-subtitle">
-                Prendre ses repères
-              </p>
-            </div>
-            <span class="world-stamp" aria-hidden="true">✧</span>
-          </div>
-          <div class="stats" aria-label="Votre partie">
-            <div>
-              <span class="stat-label">SCORE</span><strong id="score">—</strong
-              ><span class="stat-suffix">points</span>
-            </div>
-            <div>
-              <span class="stat-label">VIES</span><strong id="lives">—</strong
-              ><span class="stat-suffix">sur 5</span>
-            </div>
-            <div>
-              <span class="stat-label">PIÈCES</span><strong id="coins">—</strong
-              ><span class="stat-suffix">restantes</span>
-            </div>
-          </div>
-          <div class="board-frame">
-            <div
-              id="board"
-              class="board cols-11"
-              role="img"
-              aria-label="Chargement du labyrinthe"
-              tabindex="0"
-            ></div>
-            <div class="board-loading" id="loading">Ouverture du jardin…</div>
-          </div>
-          <div class="game-feedback">
-            <p id="message" role="status" aria-live="polite">
-              Votre aventure se prépare.
-            </p>
-            <button id="next" class="button primary" hidden>
-              Niveau suivant <span aria-hidden="true">→</span></button
-            ><button id="retry" class="button secondary" hidden>
-              Réessayer la connexion
-            </button>
-          </div>
-          <div class="board-footer">
-            <span
-              ><span
-                class="legend-token player-token"
-                aria-hidden="true"
-              ></span>
-              Vous</span
-            ><span
-              ><span class="legend-token coin-token" aria-hidden="true"></span>
-              +10 points</span
-            ><span
-              ><span class="legend-token trap-token" aria-hidden="true"></span>
-              −2 vies</span
-            ><span class="step-counter" id="steps">0 déplacement</span>
-          </div>
+      <aside class="side-panel">
+        <section class="control-card" aria-labelledby="controls-title">
+          <p class="eyebrow">À VOUS DE JOUER</p><h2 id="controls-title">Un pas d’avance.</h2><p>Flèches, ZQSD ou WASD.<br />Maintenez une direction pour continuer.</p>
+          <div class="dpad" aria-label="Commandes tactiles"><button class="up" data-move="UP" aria-label="Monter">↑</button><button class="left" data-move="LEFT" aria-label="Aller à gauche">←</button><span class="dpad-center" aria-hidden="true">✣</span><button class="right" data-move="RIGHT" aria-label="Aller à droite">→</button><button class="down" data-move="DOWN" aria-label="Descendre">↓</button></div>
+          <button id="restart" class="restart-button">↻ Recommencer l’aventure</button><p class="save-note" id="save-note">Sauvegarde automatique dans ce navigateur.</p>
         </section>
-        <aside class="side-panel">
-          <section class="control-card" aria-labelledby="controls-title">
-            <p class="eyebrow">À VOUS DE JOUER</p>
-            <h2 id="controls-title">Un pas à la fois.</h2>
-            <p>Déplacez-vous avec les flèches du clavier, ZQSD ou WASD.</p>
-            <div class="dpad" aria-label="Commandes tactiles">
-              <button class="up" data-move="UP" aria-label="Monter">↑</button
-              ><button
-                class="left"
-                data-move="LEFT"
-                aria-label="Aller à gauche"
-              >
-                ←</button
-              ><span class="dpad-center" aria-hidden="true">✣</span
-              ><button
-                class="right"
-                data-move="RIGHT"
-                aria-label="Aller à droite"
-              >
-                →</button
-              ><button class="down" data-move="DOWN" aria-label="Descendre">
-                ↓
-              </button>
-            </div>
-            <button id="restart" class="restart-button">
-              <span aria-hidden="true">↻</span> Recommencer l’aventure
-            </button>
-            <p class="save-note">
-              Votre partie est mémorisée dans ce navigateur.
-            </p>
-          </section>
-          <section class="journey-card" aria-labelledby="journey-title">
-            <p class="eyebrow">VOTRE PARCOURS</p>
-            <h2 id="journey-title">Trois lieux à explorer.</h2>
-            <ol class="world-list">
-              <li data-world="1" class="current">
-                <span>01</span>
-                <div>
-                  <strong>Le jardin oublié</strong
-                  ><small>Les premiers détours</small>
-                </div>
-                <i aria-hidden="true">●</i>
-              </li>
-              <li data-world="2">
-                <span>02</span>
-                <div>
-                  <strong>Les galeries</strong
-                  ><small>Le chemin se resserre</small>
-                </div>
-                <i aria-hidden="true">○</i>
-              </li>
-              <li data-world="3">
-                <span>03</span>
-                <div>
-                  <strong>Le dernier sanctuaire</strong
-                  ><small>La dernière ligne droite</small>
-                </div>
-                <i aria-hidden="true">○</i>
-              </li>
-            </ol>
-          </section>
-          <p class="rules-note">
-            <strong>Le piège a un prix.</strong> Vous perdez deux vies et
-            revenez au départ du niveau. Les pièces déjà ramassées restent
-            acquises. Récupérez-les toutes pour poursuivre.
-          </p>
-        </aside>
-      </div>
-    </main>
-    <footer class="site-footer">
-      <span>Un jeu de Khayem Ben Ghorbel</span
-      ><span>Interface web · moteur Java original</span
-      ><a href="https://khayem-ben-ghorbel.vercel.app/#projects"
-        >Retour au portfolio ↗</a
-      >
-    </footer>
-    <noscript
-      ><p class="noscript">
-        Activez JavaScript pour afficher le jeu et envoyer vos déplacements au
-        moteur Java.
-      </p></noscript
-    >
-  </body>
+        <section class="journey-card" aria-labelledby="journey-title"><p class="eyebrow">VOTRE PARCOURS</p><h2 id="journey-title">De haie en merveille.</h2><ol class="world-list" id="journey"></ol></section>
+        <details class="rules-card"><summary>Le petit guide du jardin <span aria-hidden="true">+</span></summary><div class="rules-content">
+          <h3>Chaque tour compte</h3><p>Un déplacement, même contre un mur, fait agir les ennemis. Un piège disparaît, coûte 2 vies et vous ramène au départ. Une perte de vie replace aussi les ennemis.</p>
+          <h3>Trois sentinelles</h3><p><b class="random-label">R · Errant</b> se déplace au hasard. <b class="ghost-label">G · Fantôme</b> traverse les murs et vous poursuit lorsqu’il est aligné. <b class="hunter-label">C · Chasseur</b> trouve le plus court chemin, possède 3 vies et inflige 2 dégâts.</p>
+          <h3>Objets & compétences</h3><p><b>W · Arme</b> : absorbe une collision et retire une vie à l’ennemi. <b>H · Sablier</b> : gèle les ennemis pendant 10 tours. Un sac plein empêche de ramasser un nouvel objet.</p><p>Le <b>crochetage</b> se gagne au-delà de 100 points et ouvre les portes D. La <b>téléportation</b> s’obtient après 3 ennemis vaincus. Ces compétences prennent aussi une place dans le sac.</p>
+          <h3>Un objectif par carte</h3><p>Ramassez toutes les pièces, éliminez les sentinelles ou trouvez le trésor T : l’objectif affiché fait foi. Sur une carte circulaire, sortir par un bord vous ramène de l’autre côté.</p><p class="guide-note">Les six cartes de cette campagne illustrent les mécaniques du sujet. Elles sont distinctes des six mondes pédagogiques du cours.</p>
+        </div></details>
+      </aside>
+    </div>
+  </main>
+  <footer class="site-footer"><span>Un jeu de Khayem Ben Ghorbel</span><span>Moteur Java partagé · éditions web et JavaFX</span><a href="https://khayem-ben-ghorbel.vercel.app/#projects">Retour au portfolio ↗</a></footer>
+  <dialog id="menu-dialog" aria-labelledby="menu-title"><form id="new-game-form"><p class="eyebrow">UNE NOUVELLE AVENTURE</p><h2 id="menu-title">Comment vous appelle-t-on ?</h2><p>Votre nom et la graine accompagnent la sauvegarde. Une même graine produit les mêmes déplacements ennemis.</p><label for="name-input">Votre nom</label><input id="name-input" name="name" maxlength="32" value="Explorateur" required autocomplete="nickname" /><details><summary>Choisir la graine</summary><label for="seed-input">Nombre entier positif</label><input id="seed-input" name="seed" inputmode="numeric" pattern="[0-9]{1,19}" value="1337" required /></details><p id="menu-error" class="form-error" role="alert"></p><p class="dialog-note">Commencer remplace la partie enregistrée dans ce navigateur.</p><div class="dialog-actions"><button type="button" class="button secondary" id="close-menu">Retour au jeu</button><button class="button primary" type="submit">Commencer →</button></div></form></dialog>
+  <dialog id="restart-dialog" aria-labelledby="restart-title"><p class="eyebrow">REPARTIR DU DÉBUT</p><h2 id="restart-title">Une autre chance ?</h2><p>Votre score et votre progression seront remis à zéro. Votre nom et votre graine sont conservés.</p><div class="dialog-actions"><button id="cancel-restart" class="button secondary">Garder ma partie</button><button id="confirm-restart" class="button primary">Recommencer →</button></div></dialog>
+  <dialog id="credits-dialog" aria-labelledby="credits-title"><p class="eyebrow">DERRIÈRE LES HAIES</p><h2 id="credits-title">Un projet de jeu Java.</h2><p>Projet de Khayem Ben Ghorbel, développé à partir du sujet de programmation orientée objet. La campagne utilise un moteur Java commun aux interfaces console, JavaFX et navigateur.</p><p>Le navigateur affiche les états et transmet les commandes ; les règles, les ennemis et les objectifs s’exécutent en Java sur le serveur. La sauvegarde conserve vos commandes localement.</p><a class="source-link" href="https://github.com/khayem487/oop-game-java" target="_blank" rel="noopener noreferrer">Consulter le code et les consignes ↗</a><div class="dialog-actions"><button id="close-credits" class="button primary">Retour au jardin →</button></div></dialog>
+  <noscript><p class="noscript">Activez JavaScript pour afficher le jeu et envoyer les commandes au moteur Java.</p></noscript>
+</body>
 </html>

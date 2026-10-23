@@ -42,3 +42,4 @@ src/app.pdf
 .vercel/
 .env
 .env.*
+target/

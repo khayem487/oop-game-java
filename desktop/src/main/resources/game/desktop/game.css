@@ -1,0 +1,58 @@
+.root {
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-font-size: 13px;
+    -fx-base: #1c2b43;
+    -fx-accent: #65dacc;
+    -fx-focus-color: #65dacc;
+    -fx-faint-focus-color: rgba(101,218,204,.2);
+    -fx-text-fill: #ecf2fc;
+    -fx-background-color: #0d1729;
+}
+.label { -fx-text-fill: #ecf2fc; }
+.game-root { -fx-background-color: linear-gradient(to bottom right, #0d1729, #15223a); }
+.eyebrow { -fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #79d8cb; }
+.game-title { -fx-font-size: 29px; -fx-font-weight: bold; }
+.level-line { -fx-text-fill: #b3c5df; -fx-font-size: 12px; }
+.button {
+    -fx-background-color: #263b59; -fx-text-fill: #e9f0fb;
+    -fx-background-radius: 9; -fx-padding: 10 16; -fx-cursor: hand;
+    -fx-font-weight: bold; -fx-border-color: transparent; -fx-border-radius: 9;
+}
+.button:hover { -fx-background-color: #344e70; }
+.button:focused { -fx-border-color: #89efdf; }
+.button:disabled { -fx-opacity: .46; -fx-cursor: default; }
+.primary-button { -fx-background-color: #65dacc; -fx-text-fill: #102c36; }
+.primary-button:hover { -fx-background-color: #9bf0e5; }
+.text-button { -fx-background-color: transparent; -fx-text-fill: #abc1df; -fx-padding: 9 0; }
+.text-button:hover { -fx-background-color: transparent; -fx-text-fill: #85e7d9; }
+.board-frame { -fx-background-color: #101c32; -fx-background-radius: 17; -fx-border-color: #2e4564; -fx-border-radius: 17; -fx-border-width: 1; }
+.board-overlay { -fx-background-color: rgba(12,24,42,.96); -fx-padding: 26; -fx-background-radius: 15; -fx-border-color: #4d6a85; -fx-border-radius: 15; }
+.overlay-title { -fx-font-size: 23px; -fx-font-weight: bold; }
+.muted { -fx-text-fill: #b4c6de; -fx-font-size: 12px; }
+.small-muted { -fx-text-fill: #9fb4d0; -fx-font-size: 11px; }
+.sidebar-scroll, .sidebar-scroll > .viewport { -fx-background-color: transparent; }
+.sidebar-scroll { -fx-padding: 0; -fx-background-insets: 0; }
+.side-panel { -fx-background-color: #192b45; -fx-background-radius: 13; -fx-padding: 18; }
+.player-name { -fx-font-size: 19px; -fx-font-weight: bold; -fx-text-fill: #f0f7ff; }
+.stat-label { -fx-font-size: 10px; -fx-text-fill: #adc0db; -fx-font-weight: bold; }
+.stat-number { -fx-font-size: 30px; -fx-font-weight: bold; }
+.objective { -fx-font-size: 13px; -fx-text-fill: #e9f1fc; }
+.separator .line { -fx-border-color: #344d6a; -fx-border-width: 1 0 0 0; }
+.inventory-slot { -fx-background-color: #233b58; -fx-padding: 8 10; -fx-alignment: center-left; }
+.inventory-slot:hover { -fx-background-color: #355775; }
+.empty-slot { -fx-background-color: #14243a; -fx-font-weight: normal; }
+.slot-key { -fx-text-fill: #81dfd2; -fx-font-size: 15px; -fx-min-width: 14px; }
+.slot-name { -fx-font-size: 12px; -fx-font-weight: bold; }
+.slot-kind { -fx-font-size: 10px; -fx-text-fill: #afc3db; }
+.event-message { -fx-text-fill: #d3e1f5; -fx-font-size: 12px; }
+.keyboard-help { -fx-font-size: 10px; -fx-text-fill: #8da7c9; }
+.menu-title { -fx-font-size: 47px; -fx-font-weight: bold; -fx-line-spacing: -2; }
+.menu-description { -fx-font-size: 17px; -fx-text-fill: #b7c9e3; -fx-line-spacing: 5px; }
+.menu-details { -fx-text-fill: #9eb6d6; -fx-font-size: 12px; -fx-line-spacing: 5px; }
+.start-button { -fx-padding: 16 24; -fx-font-size: 15px; }
+.game-dialog { -fx-background-color: #17273f; -fx-padding: 20; }
+.game-dialog .header-panel { -fx-background-color: #17273f; }
+.game-dialog .header-panel .label { -fx-font-size: 20px; -fx-font-weight: bold; }
+.game-dialog .scroll-pane, .game-dialog .scroll-pane > .viewport { -fx-background-color: transparent; }
+.game-dialog .text-field { -fx-background-color: #263d59; -fx-text-fill: #f2f7ff; -fx-prompt-text-fill: #9fb2cc; -fx-padding: 10; -fx-background-radius: 7; }
+.error-label { -fx-text-fill: #ff9da8; }

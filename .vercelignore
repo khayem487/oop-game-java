@@ -5,3 +5,12 @@ tests
 outputs
 .env
 .env.*
+legacy
+desktop
+target
+dist
+.mvn
+mvnw
+mvnw.cmd
+src/test
+docs

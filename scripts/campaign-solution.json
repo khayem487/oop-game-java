@@ -1,0 +1,148 @@
+{
+  "version": 2,
+  "commandLegend": {
+    "U": "UP",
+    "L": "LEFT",
+    "D": "DOWN",
+    "R": "RIGHT",
+    "N": "NEXT",
+    "1-5": "USE_1-USE_5"
+  },
+  "note": "Normal public GameEngine commands only; no restart, model mutation, score injection or life replenishment. Two independent seeds, six map objectives reached.",
+  "solutions": [
+    {
+      "seed": "20261022",
+      "name": "Explorateur",
+      "history": "RRRRRRDDLLLLLNRRRRRRDDLLLLLRRRRRURRURRNRRRRRRRR5RRDDLLLLLLLLLLNRDDD2R2LN22RN2RDD2LULL2L2LR",
+      "score": 180,
+      "lives": 5,
+      "defeatedEnemies": 6,
+      "commands": 90,
+      "levels": [
+        "RRRRRRDDLLLLL",
+        "RRRRRRDDLLLLLRRRRRURRURR",
+        "RRRRRRRR5RRDDLLLLLLLLLL",
+        "RDDD2R2L",
+        "22R",
+        "2RDD2LULL2L2LR"
+      ],
+      "checkpoints": [
+        {
+          "levelIndex": 0,
+          "history": "RRRRRRDDLLLLL",
+          "status": "level-complete",
+          "score": 60,
+          "lives": 5,
+          "defeatedEnemies": 0
+        },
+        {
+          "levelIndex": 1,
+          "history": "RRRRRRDDLLLLLNRRRRRRDDLLLLLRRRRRURRURR",
+          "status": "level-complete",
+          "score": 130,
+          "lives": 5,
+          "defeatedEnemies": 0
+        },
+        {
+          "levelIndex": 2,
+          "history": "RRRRRRDDLLLLLNRRRRRRDDLLLLLRRRRRURRURRNRRRRRRRR5RRDDLLLLLLLLLL",
+          "status": "level-complete",
+          "score": 150,
+          "lives": 5,
+          "defeatedEnemies": 3
+        },
+        {
+          "levelIndex": 3,
+          "history": "RRRRRRDDLLLLLNRRRRRRDDLLLLLRRRRRURRURRNRRRRRRRR5RRDDLLLLLLLLLLNRDDD2R2L",
+          "status": "level-complete",
+          "score": 180,
+          "lives": 5,
+          "defeatedEnemies": 3
+        },
+        {
+          "levelIndex": 4,
+          "history": "RRRRRRDDLLLLLNRRRRRRDDLLLLLRRRRRURRURRNRRRRRRRR5RRDDLLLLLLLLLLNRDDD2R2LN22R",
+          "status": "level-complete",
+          "score": 180,
+          "lives": 5,
+          "defeatedEnemies": 3
+        },
+        {
+          "levelIndex": 5,
+          "history": "RRRRRRDDLLLLLNRRRRRRDDLLLLLRRRRRURRURRNRRRRRRRR5RRDDLLLLLLLLLLNRDDD2R2LN22RN2RDD2LULL2L2LR",
+          "status": "won",
+          "score": 180,
+          "lives": 5,
+          "defeatedEnemies": 6
+        }
+      ]
+    },
+    {
+      "seed": "1337",
+      "name": "Explorateur",
+      "history": "RRRRRRDDLLLLLNRRRRRRDDLLLLLRRRRRURRURRNRRRRRRRR5RRDDLLLLLLLLLLNRR2RD2R2DN22RN2RU2LL2U2L2R2D",
+      "score": 180,
+      "lives": 5,
+      "defeatedEnemies": 6,
+      "commands": 91,
+      "levels": [
+        "RRRRRRDDLLLLL",
+        "RRRRRRDDLLLLLRRRRRURRURR",
+        "RRRRRRRR5RRDDLLLLLLLLLL",
+        "RR2RD2R2D",
+        "22R",
+        "2RU2LL2U2L2R2D"
+      ],
+      "checkpoints": [
+        {
+          "levelIndex": 0,
+          "history": "RRRRRRDDLLLLL",
+          "status": "level-complete",
+          "score": 60,
+          "lives": 5,
+          "defeatedEnemies": 0
+        },
+        {
+          "levelIndex": 1,
+          "history": "RRRRRRDDLLLLLNRRRRRRDDLLLLLRRRRRURRURR",
+          "status": "level-complete",
+          "score": 130,
+          "lives": 5,
+          "defeatedEnemies": 0
+        },
+        {
+          "levelIndex": 2,
+          "history": "RRRRRRDDLLLLLNRRRRRRDDLLLLLRRRRRURRURRNRRRRRRRR5RRDDLLLLLLLLLL",
+          "status": "level-complete",
+          "score": 150,
+          "lives": 5,
+          "defeatedEnemies": 3
+        },
+        {
+          "levelIndex": 3,
+          "history": "RRRRRRDDLLLLLNRRRRRRDDLLLLLRRRRRURRURRNRRRRRRRR5RRDDLLLLLLLLLLNRR2RD2R2D",
+          "status": "level-complete",
+          "score": 180,
+          "lives": 5,
+          "defeatedEnemies": 3
+        },
+        {
+          "levelIndex": 4,
+          "history": "RRRRRRDDLLLLLNRRRRRRDDLLLLLRRRRRURRURRNRRRRRRRR5RRDDLLLLLLLLLLNRR2RD2R2DN22R",
+          "status": "level-complete",
+          "score": 180,
+          "lives": 5,
+          "defeatedEnemies": 3
+        },
+        {
+          "levelIndex": 5,
+          "history": "RRRRRRDDLLLLLNRRRRRRDDLLLLLRRRRRURRURRNRRRRRRRR5RRDDLLLLLLLLLLNRR2RD2R2DN22RN2RU2LL2U2L2R2D",
+          "status": "won",
+          "score": 180,
+          "lives": 5,
+          "defeatedEnemies": 6
+        }
+      ]
+    }
+  ]
+}
